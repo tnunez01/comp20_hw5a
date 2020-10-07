@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Joe's Hotdog Stand</title>
+        <link rel="icon" href="hotdog.jpg">
+
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                text-align: center;
+            }
+            table {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            th, td {
+                text-align: left;
+                padding: 10px;
+            }
+
+        </style>
+    </head>
+
+    <body>
+        <h1>Joe's Hotdog Stand</h1>
+        <img src="hotdog.jpg" alt="hotdog" height="300" width="300">
+
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Cost of Item</th>
+                <th>Quantity Ordered</th>
+                <th>Total Cost</th>
+            </tr>
+            <tr>
+                <td>Hotdogs</td>
+                <td>$3.25</td>
+                <td id="hotdogs"></td>
+                <td id="hotdogTotal"></td>
+            </tr>
+            <tr>
+                <td>Fries</td>
+                <td>$2.00</td>
+                <td id="fries"></td>
+                <td id="friesTotal"></td>
+            </tr>
+            <tr>
+                <td>Drinks</td>
+                <td>$1.50</td>
+                <td id="drinks"></td>
+                <td id="drinkTotal"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td id="special"></td>
+                <td id="discount"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Subtotal</td>
+                <td id="sub"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Meals Tax</td>
+                <td id="tax"></td>
+            </tr>            <tr>
+                <td></td>
+                <td></td>
+                <td>Grand Total</td>
+                <td id="tot"></td>
+            </tr>
+        </table>
+ 
+        <script>
+            var numHotdogs = 0, numFries = 0, numDrinks = 0;
+            numHotdogs = prompt("How many hotdogs?", 0);
+            numFries = prompt("How many fries?", 0);
+            numDrinks = prompt("How many drinks?", 0);
+
+            var HOTDOG=3.25, FRIES=2.00, DRINK=1.50;
+            var subTotal, hotdogCost, friesCost, drinkCost;
+            hotdogCost = numHotdogs * HOTDOG;
+            friesCost = numFries * FRIES;
+            drinkCost = numDrinks * DRINK;
+
+            subTotal = hotdogCost + friesCost + drinkCost;
+            document.getElementById("sub").innerHTML = subTotal;
+            if (subTotal > 20) {
+                document.getElementById("special").innerHTML = "Joe's Special Discount";
+                var discount = subTotal * .1;
+                document.getElementById("discount").innerHTML = "-" + discount.toFixed(2);
+                subTotal = subTotal - discount;
+                alert("You qualified for Joe's special! We took 10% off your order.")
+                document.getElementById("sub").innerHTML = subTotal.toFixed(2);
+            }
+            
+            var total, taxAmt, MA_TAX=.0625;
+            taxAmt = subTotal * MA_TAX;
+            document.getElementById("tax").innerHTML = taxAmt.toFixed(2);
+            total = subTotal + taxAmt;
+            document.getElementById("tot").innerHTML = total.toFixed(2);
+
+            document.getElementById("hotdogs").innerHTML = numHotdogs; 
+            document.getElementById("fries").innerHTML = numFries; 
+            document.getElementById("drinks").innerHTML = numDrinks; 
+
+            document.getElementById("hotdogTotal").innerHTML = hotdogCost; 
+            document.getElementById("friesTotal").innerHTML = friesCost; 
+            document.getElementById("drinkTotal").innerHTML = drinkCost; 
+        </script>
+    </body>
+</html>
